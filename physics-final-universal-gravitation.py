@@ -33,7 +33,7 @@ class Mass:
 		fx = f * math.cos(theta)
 		fy = f * math.sin(theta)
 
-		return fx, fy
+		return -fx, -fy
 
 
 class Simulation:
@@ -87,7 +87,14 @@ class Simulation:
 				mass.y += mass.vy * self.spf
 
 				# Draw mass on screen
-				pygame.draw.circle(screen, white, (mass.x, mass.y), mass.radius)
+				pygame.draw.circle(screen, white, (int(mass.x), int(mass.y)), mass.radius)
 
 			pygame.display.flip()
 			clock.tick(self.fps)
+
+# TO-DO
+# 1. Add scale
+# 2. Gather and input actual planetary data
+# 3. Add trails
+
+Simulation(3600 * 24, [Mass(1000, 400, 400, 0, 0, 50), Mass(300, 400, 175, 0.00001, 0.00000001, 10), Mass(30, 550, 600, 0, -0.00002, 5)])
